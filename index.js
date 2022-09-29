@@ -13,10 +13,10 @@ ig.state.generateDevice(process.env.INSTAGRAMUSERNAME);
 ig.account.login(process.env.INSTAGRAMUSERNAME, process.env.INSTAGRAMPASSWORD).then(async ()=>{
 
     app.get("/send/anonymous/message/:username/:message", async (req, res)=>{
-
+        
         const {username, message}= req.params;
         if (username.length < 2 || message <= 10){
-
+            
             res.json({
                 sent: false,
                 error: "One of the inputs is empty.",
@@ -30,20 +30,20 @@ ig.account.login(process.env.INSTAGRAMUSERNAME, process.env.INSTAGRAMPASSWORD).t
             const thread = ig.entity.directThread([userId.toString()]);
             await thread.broadcastText(message);
         } catch (err) {
-
+            
             let error = {
                 error: "",
                 errorCode: 0
             };
             console.log(err)
-
+            
             // if(err.includes("IgExactUserNotFoundError")){
-            //     error = {
-            //         error: "Couldn't find user with exact username",
-            //         errorCode: 101
+                //     error = {
+                    //         error: "Couldn't find user with exact username",
+                    //         errorCode: 101
             //     }
             // }
-
+            
             res.json({
                 sent: false, 
                 errorFromCode: err,
@@ -52,8 +52,12 @@ ig.account.login(process.env.INSTAGRAMUSERNAME, process.env.INSTAGRAMPASSWORD).t
             })
             return ;
         }
-
+        
         res.send(message)
+    })
+
+    app.get("*", (req, res)=>{
+        res.json({why : "i love you"})
     })
     
     app.listen(3000, e=>{
