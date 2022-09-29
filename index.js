@@ -60,7 +60,7 @@ ig.account.login(process.env.INSTAGRAMUSERNAME, process.env.INSTAGRAMPASSWORD).t
         res.json({why : "i love you"})
     })
     
-    app.listen(3000, e=>{
-        console.log("port on 3000")
+    app.listen(process.env.PORT, e=>{
+        console.log("port on ", process.env.PORT)
     })
 })
