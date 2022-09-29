@@ -49,15 +49,22 @@ ig.account.login(process.env.INSTAGRAMUSERNAME, process.env.INSTAGRAMPASSWORD).t
                 errorFromCode: err,
                 ...error,
                 err
-            })
+            }) 
+            res.end()
             return ;
         }
         
-        res.send(message)
+        res.json({
+            sent: true, 
+            message,
+            username
+        })
+        res.end()
     })
 
     app.get("*", (req, res)=>{
         res.json({why : "i love you"})
+        res.end()
     })
     
     app.listen(process.env.PORT, e=>{
