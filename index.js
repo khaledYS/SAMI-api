@@ -2,9 +2,13 @@ const {IgApiClient} = require("instagram-private-api")
 const express = require("express");
 const { response } = require("express");
 const dotenv = require("dotenv");
+const cors = require("cors");
 
 dotenv.config()
 const app = express();
+
+app.use(cors({origin:"*"}));
+
 // This is the general convention on how to name the client
 //    vv
 const ig = new IgApiClient();
