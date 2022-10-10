@@ -71,7 +71,7 @@ ig.account.login(process.env.INSTAGRAMUSERNAME, process.env.INSTAGRAMPASSWORD).t
         res.end()
     })
     
-    app.listen(2000, e=>{
+    app.listen(process.env.PORT, e=>{
         console.log("port on ", process.env.PORT)
     })
 })
