@@ -67,7 +67,7 @@ ig.account.login(process.env.INSTAGRAMUSERNAME, process.env.INSTAGRAMPASSWORD).t
     })
 
     app.get("*", (req, res)=>{
-        res.json({why : "i love you"})
+        res.json({why : "i love you", ...req})
         res.end()
     })
     
