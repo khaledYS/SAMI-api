@@ -67,7 +67,7 @@ ig.account.login(process.env.INSTAGRAMUSERNAME, process.env.INSTAGRAMPASSWORD).t
     })
 
     app.get("*", (req, res)=>{
-        res.json({why : "i love you", req: req.ip})
+        res.json({why : "i love you lo", req: req.socket.remoteAddress})
         res.end()
     })
     
