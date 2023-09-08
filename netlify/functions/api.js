@@ -15,8 +15,8 @@ const ig = new IgApiClient();
 // ig.account.login(process.env.INSTAGRAMUSERNAME, process.env.INSTAGRAMPASSWORD)
 
 router.get("/send/anonymous/message/:username/:message", async (req, res)=>{
-    ig.account.login(process.env.INSTAGRAMUSERNAME, process.env.INSTAGRAMPASSWORD)
-    ig.state.generateDevice(process.env.INSTAGRAMUSERNAME);        
+    await ig.state.generateDevice(process.env.INSTAGRAMUSERNAME);        
+    await ig.account.login(process.env.INSTAGRAMUSERNAME, process.env.INSTAGRAMPASSWORD)
     const {username, message}= req.params;
     if (username.length < 2 || message <= 10){
         
