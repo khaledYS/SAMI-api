@@ -11,11 +11,12 @@ const router = express.Router();
 // This is the general convention on how to name the client
 const ig = new IgApiClient();
 // login, load a session etc.
-ig.state.generateDevice(process.env.INSTAGRAMUSERNAME);
-ig.account.login(process.env.INSTAGRAMUSERNAME, process.env.INSTAGRAMPASSWORD)
+// ig.state.generateDevice(process.env.INSTAGRAMUSERNAME);
+// ig.account.login(process.env.INSTAGRAMUSERNAME, process.env.INSTAGRAMPASSWORD)
 
 router.get("/send/anonymous/message/:username/:message", async (req, res)=>{
-        
+    ig.account.login(process.env.INSTAGRAMUSERNAME, process.env.INSTAGRAMPASSWORD)
+    ig.state.generateDevice(process.env.INSTAGRAMUSERNAME);        
     const {username, message}= req.params;
     if (username.length < 2 || message <= 10){
         
